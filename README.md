@@ -1,49 +1,37 @@
-# vanillajs-hidden-actions
-A simple re-usable component that allows you to add hidden actions behind items in a grid or list. The actions are configurable, as well as the icons representing them. 
-
-# DEMONSTRATION
-I apologive for the quality of the video, the component is actually smooth.
-
-https://github.com/user-attachments/assets/c7dcbf78-8b74-4481-b27f-7fee362be11f
-
-
+# vanillajs-imageflow
+A simple yet complete image flow component to show multiple images with a touch/mouse drag or tap to switch images. Like the Instagram interface for viewing posts.
+[you can try it here]([/guides/content/editing-an-existing-page#modifying-front-matter](https://blog.obviousleap.co/demos/imageFlowTut/))
 
 # USAGE
+Please look at the index.html file to see what css styles need to be applied.
+
 ```javascript
-import { Rater } from './js/Rater.js';
+import { ImageFlow } from "./js/ImageFlow.js";
+    updateOrientation();
 
-const thresholds = {
-    20 : { name: "track", imgUrl: "images/track.svg", entity: "track"},
-    31 : { name: "artist", imgUrl: "images/artist.svg", entity: "artist"},
-    42:  { name: "share", imgUrl: "images/forward.svg", dislike: false, entity: "share" }
-};
+    const img1Urls = ["rise_against1.jpg", "rise_against2.jpg", "rise_against3.jpg", "rise_against4.jpg", "rise_against5.jpg", "rise_against6.jpg", "rise_against7.jpg", "rise_against8.jpg", "rise_against9.jpg"];
+    const cont1El = document.querySelector("div#flow1")
+    const flow = new ImageFlow(cont1El, img1Urls);
 
-const contEl = document.querySelector("div#tracks");
-const rater = new Rater(contEl, "div.track", 13, 50, thresholds, { applyHeight: true });
-rater.addEventListener(Rater.rated, ratingDone);
-rater.addEventListener(Rater.rating, ratingStart);
+    const img2Urls = ["infected_mushroom1.jpg", "infected_mushroom2.jpg", "infected_mushroom3.jpg", "infected_mushroom4.jpg", "infected_mushroom5.jpg", "infected_mushroom6.jpg"];
+    const cont2El = document.querySelector("div#flow2")
+    const flow2 = new ImageFlow(cont2El, img2Urls);
 
-function ratingDone(e)
-{
-    if(e.entity === "artist" && e.perc < 0)
-    {
-        const artistId = parseInt(e.el.getAttribute("artistid"));
-        const trackEls = document.querySelectorAll("div.track[artistid='"+artistId+"']");
-        trackEls.forEach(function(trackEl) {
-            trackEl.parentNode.removeChild(trackEl);
-        });
-    }
-    else if(e.entity === "track" && e.perc < 0)
-    {
-        const trackEl = e.el;
-        trackEl.parentNode.removeChild(trackEl);
-    }
-}
+flow.addEventListener(ImageFlow.nextImage, function(e) {
+    // fired when the interface switches to the next image
+});
 
-function ratingStart(e)
-{
-    console.log("rating start", e);
-}
+flow.addEventListener(ImageFlow.previousImage, function(e) {
+// fired when the interface switches to the previous image
+});
+
+flow.addEventListener(ImageFlow.mouseDrag, function(e) {
+    // fired when the user uses the mouse to drag the image
+});
+
+flow.addEventListener(ImageFlow.touchDrag, function(e) {
+    // fired when the user uses touch input to drag the image
+});
 ```
 
 # CREDITS
