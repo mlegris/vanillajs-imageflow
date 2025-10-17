@@ -1,6 +1,6 @@
 # vanillajs-imageflow
 A simple yet complete image flow component to show multiple images with a touch/mouse drag or tap to switch images. Like the Instagram interface for viewing posts.
-[you can try it here]([/guides/content/editing-an-existing-page#modifying-front-matter](https://blog.obviousleap.co/demos/imageFlowTut/))
+[you can try it here](https://blog.obviousleap.co/demos/imageFlowTut/)
 
 # USAGE
 Please look at the index.html file to see what css styles need to be applied.
