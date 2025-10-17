@@ -1,0 +1,46 @@
+<html><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <style>
+
+        body { padding: 0; margin: 0; font-family: sans-serif; }
+
+        body[mobile][portrait]
+        {
+            div.flow { width: 100vw; height: 35vh; }
+        }
+        body[mobile][landscape]
+        {
+            div.flow { width: 50vw; height: 75vh; }
+        }
+        body[desktop]
+        {
+            div.flow { width: 30em; height: 20em; }
+        }
+
+        div.flow { overflow: hidden; position: relative; }
+        div.flow div.images { display: flex; flex-wrap: nowrap; flex-direction: row; justify-content: center; align-items: center; width: fit-content; height: 100%; position: absolute; top: 0; filter: saturate(0.2); }
+        div.flow img.thumb { width: 100%; height: 100%; object-fit: cover; }
+        div.flow div.dots { position: absolute; z-index: 3; top: 0.5em; opacity: 0.6; transition: opacity 0.2s ease-out; width: 100%; text-align: center; }
+        div.flow div.dots span.dot { width: 0.5em; height: 0.5em; border-radius: 50%; background-color: rgba(0, 0, 0, 0.9); display: inline-block; margin-right: 0.25em; box-sizing: border-box; }
+        div.flow div.dots span.dot[selected] { background-color: rgba(255, 255, 255, 1); width: 0.5em; height: 0.5em;}
+        div.flow div.thumbContainer { display: inline-block; }
+    </style>
+    <script src="./js/utils.js"></script>
+    <script type="module">
+    import { ImageFlow } from "./js/ImageFlow.js";
+    updateOrientation();
+
+    const img1Urls = ["rise_against1.jpg", "rise_against2.jpg", "rise_against3.jpg", "rise_against4.jpg", "rise_against5.jpg", "rise_against6.jpg", "rise_against7.jpg", "rise_against8.jpg", "rise_against9.jpg"];
+    const cont1El = document.querySelector("div#flow1")
+    const flow = new ImageFlow(cont1El, img1Urls);
+
+    const img2Urls = ["infected_mushroom1.jpg", "infected_mushroom2.jpg", "infected_mushroom3.jpg", "infected_mushroom4.jpg", "infected_mushroom5.jpg", "infected_mushroom6.jpg"];
+    const cont2El = document.querySelector("div#flow2")
+    const flow2 = new ImageFlow(cont2El, img2Urls);
+</script></head>
+<body>
+<div id="flow1" class="flow"></div>
+<br />
+<div id="flow2" class="flow"></div>
+</body></html>
